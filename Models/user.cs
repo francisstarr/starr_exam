@@ -11,7 +11,9 @@ namespace starrexam.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class user
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,11 +21,20 @@ namespace starrexam.Models
         {
             this.bookings = new HashSet<booking>();
         }
-    
+        [Required]
+        [Display(Name = "User Name")]
+        [DataType(DataType.Text), Key]
         public string userName { get; set; }
+        [Required]
+        [Display(Name = "Password")]
+        [DataType(DataType.Password)]
         public string password { get; set; }
+        [Required]
+        [Display(Name = "User Type")]
         public string userType { get; set; }
-    
+        [NotMapped]
+        public string errorMessage { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<booking> bookings { get; set; }
     }
