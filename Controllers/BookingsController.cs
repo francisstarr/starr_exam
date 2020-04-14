@@ -56,7 +56,10 @@ namespace starrexam.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "bookingId,roomNumber,userName,starting,ending")] booking booking)
         {
-            if (ModelState.IsValid)
+            if (booking.starting<DateTime.Now||booking.ending<DateTime.Now) {
+                booking.errorMessage = "One or more of your dates is in the past. You must change that if you want to continue";
+            }
+            else if (ModelState.IsValid)
             {
                 db.bookings.Add(booking);
                 db.SaveChanges();

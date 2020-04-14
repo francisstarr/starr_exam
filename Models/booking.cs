@@ -12,6 +12,7 @@ namespace starrexam.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public partial class booking
     {
@@ -26,5 +27,7 @@ namespace starrexam.Models
     
         public virtual room room { get; set; }
         public virtual user user { get; set; }
+        [NotMapped]
+        public string errorMessage { get; set; }
     }
 }
