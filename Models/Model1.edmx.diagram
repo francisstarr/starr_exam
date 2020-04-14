@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7359727ec12340e6b7d2f9afd58a1005" Name="Diagram1">
+        <EntityTypeShape EntityType="starrexamModel.room" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="starrexamModel.user" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="starrexamModel.booking" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="starrexamModel.FK__bookings__roomNu__6754599E" ManuallyRouted="false" />
+        <AssociationConnector Association="starrexamModel.FK__bookings__userNa__68487DD7" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
