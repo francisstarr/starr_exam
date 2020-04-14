@@ -11,9 +11,13 @@ namespace starrexam.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class booking
     {
+        [Required]
+        [Display(Name = "Booking Id")]
+        [DataType(DataType.Text), Key]
         public string bookingId { get; set; }
         public short roomNumber { get; set; }
         public string userName { get; set; }

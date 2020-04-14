@@ -23,7 +23,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Francis Starr", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("St★rr App", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -34,7 +34,7 @@
                             <li>@Html.ActionLink("Users", "Index", "Users")</li>
                         }
                     }
-
+                <li>@Html.ActionLink("Bookings", "Index", "Bookings")</li>
                     <li><h4 class="text-success">@Session["userName"] [ @Session["userType"] ]</h4> </li>
                 </ul>
             </div>
