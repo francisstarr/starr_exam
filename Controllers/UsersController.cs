@@ -15,14 +15,27 @@ namespace starrexam.Controllers
         private starrexamEntities db = new starrexamEntities();
 
         // GET: Users
+      
         public ActionResult Index()
         {
+            /////////////
+            if (!Session["userType"].Equals("admin")) {
+                return RedirectToAction("Index", "Home");
+            }
+             //////////
             return View(db.users.ToList());
         }
 
         // GET: Users/Details/5
+        
         public ActionResult Details(string id)
         {
+            /////////////
+            if (!Session["userType"].Equals("admin"))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            //////////
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -38,6 +51,12 @@ namespace starrexam.Controllers
         // GET: Users/Create
         public ActionResult Create()
         {
+            /////////////
+            if (!Session["userType"].Equals("admin"))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            //////////
             return View();
         }
 
@@ -48,6 +67,12 @@ namespace starrexam.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "userName,password,userType")] user user)
         {
+            /////////////
+            if (!Session["userType"].Equals("admin"))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            //////////
             if (ModelState.IsValid)
             {
                 db.users.Add(user);
@@ -61,6 +86,12 @@ namespace starrexam.Controllers
         // GET: Users/Edit/5
         public ActionResult Edit(string id)
         {
+            /////////////
+            if (!Session["userType"].Equals("admin"))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            //////////
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -80,6 +111,12 @@ namespace starrexam.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "userName,password,userType")] user user)
         {
+            /////////////
+            if (!Session["userType"].Equals("admin"))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            //////////
             if (ModelState.IsValid)
             {
                 db.Entry(user).State = EntityState.Modified;
@@ -92,6 +129,12 @@ namespace starrexam.Controllers
         // GET: Users/Delete/5
         public ActionResult Delete(string id)
         {
+            /////////////
+            if (!Session["userType"].Equals("admin"))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            //////////
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -113,6 +156,12 @@ namespace starrexam.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
+            /////////////
+            if (!Session["userType"].Equals("admin"))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            //////////
             user user = db.users.Find(id);
             if (user.userName.Equals(Session["userName"]))
             {
@@ -125,6 +174,7 @@ namespace starrexam.Controllers
 
         protected override void Dispose(bool disposing)
         {
+
             if (disposing)
             {
                 db.Dispose();
