@@ -25,8 +25,8 @@ namespace starrexam.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<booking> bookings { get; set; }
         public virtual DbSet<room> rooms { get; set; }
         public virtual DbSet<user> users { get; set; }
-        public virtual DbSet<booking> bookings { get; set; }
     }
 }

@@ -5,15 +5,9 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="starrexamModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'starrexam.dbo.bookings' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="bookings">
           <Key>
             <PropertyRef Name="bookingId" />
-            <PropertyRef Name="roomNumber" />
-            <PropertyRef Name="userName" />
-            <PropertyRef Name="starting" />
-            <PropertyRef Name="ending" />
           </Key>
           <Property Name="bookingId" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="roomNumber" Type="smallint" Nullable="false" />
@@ -36,7 +30,7 @@ warning 6002: The table/view 'starrexam.dbo.bookings' does not have a primary ke
           <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="userType" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <Association Name="FK__bookings__roomNu__6754599E">
+        <Association Name="FK__bookings__roomNu__73BA3083">
           <End Role="rooms" Type="Self.rooms" Multiplicity="1" />
           <End Role="bookings" Type="Self.bookings" Multiplicity="*" />
           <ReferentialConstraint>
@@ -48,7 +42,7 @@ warning 6002: The table/view 'starrexam.dbo.bookings' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__bookings__userNa__68487DD7">
+        <Association Name="FK__bookings__userNa__74AE54BC">
           <End Role="users" Type="Self.users" Multiplicity="1" />
           <End Role="bookings" Type="Self.bookings" Multiplicity="*" />
           <ReferentialConstraint>
@@ -61,22 +55,14 @@ warning 6002: The table/view 'starrexam.dbo.bookings' does not have a primary ke
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="starrexamModelStoreContainer">
+          <EntitySet Name="bookings" EntityType="Self.bookings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="rooms" EntityType="Self.rooms" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="bookings" EntityType="Self.bookings" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [bookings].[bookingId] AS [bookingId], 
-    [bookings].[roomNumber] AS [roomNumber], 
-    [bookings].[userName] AS [userName], 
-    [bookings].[starting] AS [starting], 
-    [bookings].[ending] AS [ending]
-    FROM [dbo].[bookings] AS [bookings]</DefiningQuery>
-          </EntitySet>
-          <AssociationSet Name="FK__bookings__roomNu__6754599E" Association="Self.FK__bookings__roomNu__6754599E">
+          <AssociationSet Name="FK__bookings__roomNu__73BA3083" Association="Self.FK__bookings__roomNu__73BA3083">
             <End Role="rooms" EntitySet="rooms" />
             <End Role="bookings" EntitySet="bookings" />
           </AssociationSet>
-          <AssociationSet Name="FK__bookings__userNa__68487DD7" Association="Self.FK__bookings__userNa__68487DD7">
+          <AssociationSet Name="FK__bookings__userNa__74AE54BC" Association="Self.FK__bookings__userNa__74AE54BC">
             <End Role="users" EntitySet="users" />
             <End Role="bookings" EntitySet="bookings" />
           </AssociationSet>
@@ -86,13 +72,25 @@ warning 6002: The table/view 'starrexam.dbo.bookings' does not have a primary ke
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="starrexamModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="booking">
+          <Key>
+            <PropertyRef Name="bookingId" />
+          </Key>
+          <Property Name="bookingId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="roomNumber" Type="Int16" Nullable="false" />
+          <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="starting" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ending" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="room" Relationship="Self.FK__bookings__roomNu__73BA3083" FromRole="bookings" ToRole="rooms" />
+          <NavigationProperty Name="user" Relationship="Self.FK__bookings__userNa__74AE54BC" FromRole="bookings" ToRole="users" />
+        </EntityType>
         <EntityType Name="room">
           <Key>
             <PropertyRef Name="roomNumber" />
           </Key>
           <Property Name="roomNumber" Type="Int16" Nullable="false" />
           <Property Name="price" Type="Int16" Nullable="false" />
-          <NavigationProperty Name="bookings" Relationship="Self.FK__bookings__roomNu__6754599E" FromRole="rooms" ToRole="bookings" />
+          <NavigationProperty Name="bookings" Relationship="Self.FK__bookings__roomNu__73BA3083" FromRole="rooms" ToRole="bookings" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -101,25 +99,9 @@ warning 6002: The table/view 'starrexam.dbo.bookings' does not have a primary ke
           <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="userType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="bookings" Relationship="Self.FK__bookings__userNa__68487DD7" FromRole="users" ToRole="bookings" />
+          <NavigationProperty Name="bookings" Relationship="Self.FK__bookings__userNa__74AE54BC" FromRole="users" ToRole="bookings" />
         </EntityType>
-        <EntityType Name="booking">
-          <Key>
-            <PropertyRef Name="bookingId" />
-            <PropertyRef Name="roomNumber" />
-            <PropertyRef Name="userName" />
-            <PropertyRef Name="starting" />
-            <PropertyRef Name="ending" />
-          </Key>
-          <Property Name="bookingId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="roomNumber" Type="Int16" Nullable="false" />
-          <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="starting" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="ending" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="room" Relationship="Self.FK__bookings__roomNu__6754599E" FromRole="bookings" ToRole="rooms" />
-          <NavigationProperty Name="user" Relationship="Self.FK__bookings__userNa__68487DD7" FromRole="bookings" ToRole="users" />
-        </EntityType>
-        <Association Name="FK__bookings__roomNu__6754599E">
+        <Association Name="FK__bookings__roomNu__73BA3083">
           <End Role="rooms" Type="Self.room" Multiplicity="1" />
           <End Role="bookings" Type="Self.booking" Multiplicity="*" />
           <ReferentialConstraint>
@@ -131,7 +113,7 @@ warning 6002: The table/view 'starrexam.dbo.bookings' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__bookings__userNa__68487DD7">
+        <Association Name="FK__bookings__userNa__74AE54BC">
           <End Role="users" Type="Self.user" Multiplicity="1" />
           <End Role="bookings" Type="Self.booking" Multiplicity="*" />
           <ReferentialConstraint>
@@ -144,14 +126,14 @@ warning 6002: The table/view 'starrexam.dbo.bookings' does not have a primary ke
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="starrexamEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="bookings" EntityType="Self.booking" />
           <EntitySet Name="rooms" EntityType="Self.room" />
           <EntitySet Name="users" EntityType="Self.user" />
-          <EntitySet Name="bookings" EntityType="Self.booking" />
-          <AssociationSet Name="FK__bookings__roomNu__6754599E" Association="Self.FK__bookings__roomNu__6754599E">
+          <AssociationSet Name="FK__bookings__roomNu__73BA3083" Association="Self.FK__bookings__roomNu__73BA3083">
             <End Role="rooms" EntitySet="rooms" />
             <End Role="bookings" EntitySet="bookings" />
           </AssociationSet>
-          <AssociationSet Name="FK__bookings__userNa__68487DD7" Association="Self.FK__bookings__userNa__68487DD7">
+          <AssociationSet Name="FK__bookings__userNa__74AE54BC" Association="Self.FK__bookings__userNa__74AE54BC">
             <End Role="users" EntitySet="users" />
             <End Role="bookings" EntitySet="bookings" />
           </AssociationSet>
@@ -162,6 +144,17 @@ warning 6002: The table/view 'starrexam.dbo.bookings' does not have a primary ke
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="starrexamModelStoreContainer" CdmEntityContainer="starrexamEntities">
+          <EntitySetMapping Name="bookings">
+            <EntityTypeMapping TypeName="starrexamModel.booking">
+              <MappingFragment StoreEntitySet="bookings">
+                <ScalarProperty Name="bookingId" ColumnName="bookingId" />
+                <ScalarProperty Name="roomNumber" ColumnName="roomNumber" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="starting" ColumnName="starting" />
+                <ScalarProperty Name="ending" ColumnName="ending" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="rooms">
             <EntityTypeMapping TypeName="starrexamModel.room">
               <MappingFragment StoreEntitySet="rooms">
@@ -176,17 +169,6 @@ warning 6002: The table/view 'starrexam.dbo.bookings' does not have a primary ke
                 <ScalarProperty Name="userName" ColumnName="userName" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="userType" ColumnName="userType" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="bookings">
-            <EntityTypeMapping TypeName="starrexamModel.booking">
-              <MappingFragment StoreEntitySet="bookings">
-                <ScalarProperty Name="bookingId" ColumnName="bookingId" />
-                <ScalarProperty Name="roomNumber" ColumnName="roomNumber" />
-                <ScalarProperty Name="userName" ColumnName="userName" />
-                <ScalarProperty Name="starting" ColumnName="starting" />
-                <ScalarProperty Name="ending" ColumnName="ending" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
