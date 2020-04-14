@@ -28,7 +28,15 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Log Out", "Logout", "Home")</li>
-                    <li>@Html.ActionLink("Users", "Index", "Users")</li>
+                    @{
+                        if (Session["userName"] != null && Session["userType"].Equals("admin"))
+                        {
+                            <li>@Html.ActionLink("Users", "Index", "Users")</li>
+
+                        }
+                    }
+
+                    <li><h4 class="text-success">@Session["userName"] [ @Session["userType"] ]</h4> </li>
                 </ul>
             </div>
         </div>

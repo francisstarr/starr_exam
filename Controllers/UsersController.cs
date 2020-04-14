@@ -101,6 +101,10 @@ namespace starrexam.Controllers
             {
                 return HttpNotFound();
             }
+            else if (user.userName.Equals(Session["userName"]))
+            {
+                user.errorMessage = "Users are not permitted to delete themselves from the application. Therefore the delete button will not work in this instance.";
+            }
             return View(user);
         }
 
@@ -110,6 +114,10 @@ namespace starrexam.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             user user = db.users.Find(id);
+            if (user.userName.Equals(Session["userName"]))
+            {
+                return Delete(id);
+            }
             db.users.Remove(user);
             db.SaveChanges();
             return RedirectToAction("Index");
