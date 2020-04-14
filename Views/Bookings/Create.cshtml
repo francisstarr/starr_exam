@@ -17,7 +17,8 @@
     <div class="form-group">
         @Html.LabelFor(model => model.bookingId, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.bookingId, new { htmlAttributes = new { @class = "form-control",@Value = "placeholder", @readonly = "readonly" } })
+            <i>The booking Id will be generated after the booking.</i>
+            @Html.EditorFor(model => model.bookingId, new { htmlAttributes = new { @class = "form-control", @Value="just placeholder", @readonly = "readonly", @style = "display: none"  } })
             @Html.ValidationMessageFor(model => model.bookingId, "", new { @class = "text-danger" })
         </div>
     </div>

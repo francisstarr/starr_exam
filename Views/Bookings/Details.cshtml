@@ -11,6 +11,13 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.bookingId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bookingId)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.starting)
         </dt>
 
@@ -35,11 +42,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.user.password)
+            @Html.DisplayNameFor(model => model.room.price)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.user.password)
+            $ @Html.DisplayFor(model => model.room.price)
         </dd>
 
     </dl>

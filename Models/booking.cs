@@ -13,6 +13,7 @@ namespace starrexam.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+    using System.Text;
 
     public partial class booking
     {
@@ -20,7 +21,11 @@ namespace starrexam.Models
         [Display(Name = "Booking Id")]
         [DataType(DataType.Text), Key]
         public string bookingId { get; set; }
+        [Required]
+        [Display(Name = "Room #")]
         public short roomNumber { get; set; }
+        [Required]
+        [Display(Name = "User Name")]
         public string userName { get; set; }
         public System.DateTime starting { get; set; }
         public System.DateTime ending { get; set; }
@@ -29,5 +34,17 @@ namespace starrexam.Models
         public virtual user user { get; set; }
         [NotMapped]
         public string errorMessage { get; set; }
+
+        public string randomString() {
+            Random random = new Random();
+            int length = 20;
+            string characters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+            StringBuilder result = new StringBuilder(length);
+            for (int i = 0; i < length; i++)
+            {
+                result.Append(characters[random.Next(characters.Length)]);
+            }
+            return result.ToString();
+        }
     }
 }

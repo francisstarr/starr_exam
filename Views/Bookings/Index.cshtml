@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Book a Room", "Create")
 </p>
 <table class="table">
     <tr>
@@ -23,7 +23,9 @@
         <th>
             @Html.DisplayNameFor(model => model.ending)
         </th>
-
+        <th>
+            @Html.DisplayNameFor(model => model.room.price)
+        </th>
 
         <th></th>
     </tr>
@@ -42,7 +44,9 @@
     <td>
         @Html.DisplayFor(modelItem => item.ending)
     </td>
-
+    <td>
+       $ @Html.DisplayFor(modelItem => item.room.price)
+    </td>
 
     <td>
         @Html.ActionLink("Edit", "Edit", new { id = item.bookingId }) |

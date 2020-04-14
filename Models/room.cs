@@ -11,7 +11,8 @@ namespace starrexam.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class room
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,8 +20,11 @@ namespace starrexam.Models
         {
             this.bookings = new HashSet<booking>();
         }
-    
+        [Required]
+        [Display(Name = "Room #")]
         public short roomNumber { get; set; }
+        [Required]
+        [Display(Name = "Price [C$]")]
         public short price { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
