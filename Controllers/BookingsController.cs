@@ -17,7 +17,12 @@ namespace starrexam.Controllers
         // GET: Bookings
         public ActionResult Index()
         {
-            var bookings = db.bookings.Include(b => b.room).Include(b => b.user);
+            //var bookings = db.bookings.Include(b => b.room).Include(b => b.user);
+            string userName = (string)Session["userName"];
+            var bookings = from b in db.bookings 
+                           where b.userName.Equals(userName) 
+                           select b;
+           
             return View(bookings.ToList());
         }
 
@@ -40,7 +45,7 @@ namespace starrexam.Controllers
         public ActionResult Create()
         {
             ViewBag.roomNumber = new SelectList(db.rooms, "roomNumber", "roomNumber");
-            ViewBag.userName = new SelectList(db.users, "userName", "password");
+            ViewBag.userName = new SelectList(db.users, "userName", "userName");
             return View();
         }
 
@@ -59,7 +64,7 @@ namespace starrexam.Controllers
             }
 
             ViewBag.roomNumber = new SelectList(db.rooms, "roomNumber", "roomNumber", booking.roomNumber);
-            ViewBag.userName = new SelectList(db.users, "userName", "password", booking.userName);
+            ViewBag.userName = new SelectList(db.users, "userName", "userName", booking.userName);
             return View(booking);
         }
 
