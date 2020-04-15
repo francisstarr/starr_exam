@@ -19,7 +19,7 @@ namespace starrexam.Controllers
         public ActionResult Index()
         {
             /////////////
-            if (!Session["userType"].Equals("admin")) {
+            if (Session["userType"]==null || !Session["userType"].Equals("admin")) {
                 return RedirectToAction("Index", "Home");
             }
              //////////
