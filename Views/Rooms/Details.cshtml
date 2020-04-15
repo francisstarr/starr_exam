@@ -26,6 +26,35 @@
         </dd>
 
     </dl>
+    <table class="table table-bordered">
+        
+            <tr class="info">
+                <td>
+                    @Html.DisplayNameFor(model => model.bookings.ToList()[0].starting)
+                </td>
+                <td>
+                    @Html.DisplayNameFor(model => model.bookings.ToList()[0].ending)
+                </td>
+            </tr>
+
+            @foreach (var item in Model.bookings)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem=>item.starting)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem=>item.ending)
+                    </td>
+                </tr>
+            }
+            @if (Model.bookings.Count==0) {
+                <tr>
+                    <u>This room does not have future bookings. You can be the first.</u>
+                </tr>
+            }
+        
+    </table>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.roomNumber }) |

@@ -27,7 +27,11 @@ namespace starrexam.Models
         [Required]
         [Display(Name = "User Name")]
         public string userName { get; set; }
+        [Required]
+        [Display(Name = "Start Date")]
         public System.DateTime starting { get; set; }
+        [Required]
+        [Display(Name = "End Date")]
         public System.DateTime ending { get; set; }
     
         public virtual room room { get; set; }
