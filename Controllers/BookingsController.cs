@@ -70,7 +70,7 @@ namespace starrexam.Controllers
             if (rowCount > 0) {
                 booking.errorMessage = "Sorry but the dates you chose overlap with an existing of this room and we don't don double bookings. Please change the dates if you really want this room";
             }
-            else if (booking.starting < DateTime.Now || booking.ending < DateTime.Now) {
+            else if (booking.starting < DateTime.Today || booking.ending < DateTime.Today) {
                 booking.errorMessage = "One or more of your dates is in the past. You must change that if you want to continue";
             }
             else if (booking.starting>=booking.ending) {
@@ -136,7 +136,7 @@ namespace starrexam.Controllers
             {
                 return HttpNotFound();
             }
-            else if ((booking.starting - DateTime.Now).TotalDays <= 1)
+            else if ((booking.starting - DateTime.Today).TotalDays <= 1)
             {
                 booking.errorMessage = "You can only cancel you booking if your starting date is more than one date in the future. The cancel button is disabled in this particular case.";
             }
@@ -150,7 +150,7 @@ namespace starrexam.Controllers
         {
        
             booking booking = db.bookings.Find(id);
-            if ((booking.starting-DateTime.Now).TotalDays <= 1)
+            if ((booking.starting-DateTime.Today).TotalDays <= 1)
             {
                 return Delete(id);
             }
