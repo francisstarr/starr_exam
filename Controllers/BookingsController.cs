@@ -122,6 +122,10 @@ namespace starrexam.Controllers
             {
                 return HttpNotFound();
             }
+            else if ((booking.starting - DateTime.Now).TotalDays <= 1)
+            {
+                booking.errorMessage = "You can only cancel you booking if your starting date is more than one date in the future. The cancel button is disabled in this particular case.";
+            }
             return View(booking);
         }
 
@@ -130,7 +134,12 @@ namespace starrexam.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
+       
             booking booking = db.bookings.Find(id);
+            if ((booking.starting-DateTime.Now).TotalDays <= 1)
+            {
+                return Delete(id);
+            }
             db.bookings.Remove(booking);
             db.SaveChanges();
             return RedirectToAction("Index");
