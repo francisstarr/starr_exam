@@ -6,23 +6,23 @@
 
 <h2>Index</h2>
 <p>
-    @Html.ActionLink("Book a Room", "Create")
-</p>
-<p>
-    This is a list of all your past, present and future bookings. To get more information about a specific booking, click on its <b>@Html.DisplayNameFor(model => model.bookingId)</b>.
-</p>
-<p>
-    To get more information about a specific room that you booked, click on its  <b>@Html.DisplayNameFor(model => model.roomNumber)</b>.
-</p>
-<p>
-    Click on the <b>Cancel</b> button to cancel a booking. Note that
-    you can only cancel you booking if your starting date is more than one date in the future
-</p>
-<p>
     @Html.ActionLink("Book a Room (for anyone)", "Create")
 </p>
+<p>
+    This is a list of all your past, present and future bookings for all users. To get more information about a specific booking, click on its <b>@Html.DisplayNameFor(model => model.bookingId)</b>.
+</p>
+
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.userName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bookingId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.room.roomNumber)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.starting)
         </th>
@@ -30,35 +30,40 @@
             @Html.DisplayNameFor(model => model.ending)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.room.roomNumber)
+            @Html.DisplayNameFor(model => model.room.price)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.user.password)
-        </th>
+
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.starting)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ending)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.room.roomNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.user.password)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.bookingId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.bookingId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.bookingId })
-            </td>
-        </tr>
+<tr>
+    <td>
+        <a href="@Url.Action("Details", "Users", new { Id=item.userName})">  @Html.DisplayFor(modelItem => item.userName)</a>
+    </td>
+    <td>
+        <a href="@Url.Action("Details", new { id = item.bookingId })">
+            @Html.DisplayFor(modelItem => item.bookingId)
+        </a>
+    </td>
+    <td>
+        <a href="@Url.Action("Details", "Rooms", new { Id=item.roomNumber})">  @Html.DisplayFor(modelItem => item.room.roomNumber)</a>
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.starting)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ending)
+    </td>
+    <td>
+        $ @Html.DisplayFor(modelItem => item.room.price)
+    </td>
+
+    <td>
+        @Html.ActionLink("Cancel", "Delete", new { id = item.bookingId })
+    </td>
+</tr>
     }
 
 </table>
