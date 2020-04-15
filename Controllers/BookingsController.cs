@@ -44,7 +44,12 @@ namespace starrexam.Controllers
         // GET: Bookings/Create
         public ActionResult Create()
         {
-            var roomsToChoose = from r in db.rooms select r;
+        
+            var roomsToChoose = from r in db.rooms where r.roomNumber>=200 select r;
+            if (Session["userType"].Equals("admin"))
+            {
+                roomsToChoose = from r in db.rooms select r;
+            }
             ViewBag.roomNumber = new SelectList(roomsToChoose, "roomNumber", "roomNumber");
             ViewBag.userName = new SelectList(db.users, "userName", "userName");
             return View();
@@ -68,8 +73,8 @@ namespace starrexam.Controllers
             else if (booking.starting < DateTime.Now || booking.ending < DateTime.Now) {
                 booking.errorMessage = "One or more of your dates is in the past. You must change that if you want to continue";
             }
-            else if (booking.starting>booking.ending) {
-                booking.errorMessage = "Your starting date cannot occur after your ending date.";
+            else if (booking.starting>=booking.ending) {
+                booking.errorMessage = "Your ending date must be greater than your start date.";
             }
             else if (ModelState.IsValid)
             {
