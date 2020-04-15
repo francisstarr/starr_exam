@@ -32,6 +32,7 @@
                         if (Session["userName"] != null && Session["userType"].Equals("admin"))
                         {
                             <li>@Html.ActionLink("Users", "Index", "Users")</li>
+                            <li>@Html.ActionLink("Bookings Admin", "Index", "Bookingsadmin")</li>
                         }
                     }
                     <li>@Html.ActionLink("Rooms", "Index", "Rooms")</li>
