@@ -126,6 +126,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BookingsadminController.cs" />
     <Compile Include="Controllers\BookingsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -186,18 +187,23 @@
     <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Users\Delete.cshtml" />
     <Content Include="Views\Users\Details.cshtml" />
-    <Content Include="Views\Users\Edit.cshtml" />
+    <Content Include="Views\Users\Edit_blocked.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Bookings\Create.cshtml" />
     <Content Include="Views\Bookings\Delete.cshtml" />
     <Content Include="Views\Bookings\Details.cshtml" />
-    <Content Include="Views\Bookings\Edit.cshtml" />
+    <Content Include="Views\Bookings\Edit_blocked.cshtml" />
     <Content Include="Views\Bookings\Index.cshtml" />
-    <Content Include="Views\Rooms\Create.cshtml" />
-    <Content Include="Views\Rooms\Delete.cshtml" />
+    <Content Include="Views\Rooms\Create_blocked.cshtml" />
+    <Content Include="Views\Rooms\Delete_blocked.cshtml" />
     <Content Include="Views\Rooms\Details.cshtml" />
-    <Content Include="Views\Rooms\Edit.cshtml" />
+    <Content Include="Views\Rooms\Edit_blocked.cshtml" />
     <Content Include="Views\Rooms\Index.cshtml" />
+    <Content Include="Views\Bookingsadmin\Create.cshtml" />
+    <Content Include="Views\Bookingsadmin\Delete.cshtml" />
+    <Content Include="Views\Bookingsadmin\Details.cshtml" />
+    <Content Include="Views\Bookingsadmin\Edit.cshtml" />
+    <Content Include="Views\Bookingsadmin\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
