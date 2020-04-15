@@ -51,6 +51,12 @@ namespace starrexam.Controllers
         // GET: Bookingsadmin/Create
         public ActionResult Create()
         {
+            /////////////
+            if (Session["userType"] == null || !Session["userType"].Equals("admin"))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            //////////
             ViewBag.roomNumber = new SelectList(db.rooms, "roomNumber", "roomNumber");
             ViewBag.userName = new SelectList(db.users, "userName", "userName");
             return View();
@@ -63,6 +69,12 @@ namespace starrexam.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "bookingId,roomNumber,userName,starting,ending")] booking booking)
         {
+            /////////////
+            if (Session["userType"] == null || !Session["userType"].Equals("admin"))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            //////////
             var checkRowCount = from b in db.bookings
                                 where (b.roomNumber == booking.roomNumber) &&
        ((booking.ending >= b.starting && booking.ending <= b.ending) || (booking.starting >= b.starting && booking.starting <= b.ending))
@@ -131,6 +143,12 @@ namespace starrexam.Controllers
         // GET: Bookingsadmin/Delete/5
         public ActionResult Delete(string id)
         {
+            /////////////
+            if (Session["userType"] == null || !Session["userType"].Equals("admin"))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            //////////
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

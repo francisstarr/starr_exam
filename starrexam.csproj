@@ -202,7 +202,7 @@
     <Content Include="Views\Bookingsadmin\Create.cshtml" />
     <Content Include="Views\Bookingsadmin\Delete.cshtml" />
     <Content Include="Views\Bookingsadmin\Details.cshtml" />
-    <Content Include="Views\Bookingsadmin\Edit.cshtml" />
+    <Content Include="Views\Bookingsadmin\Edit_blocked.cshtml" />
     <Content Include="Views\Bookingsadmin\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

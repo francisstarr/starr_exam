@@ -31,7 +31,7 @@ namespace starrexam.Controllers
         public ActionResult Details(string id)
         {
             /////////////
-            if (!Session["userType"].Equals("admin"))
+            if (Session["userType"] == null || !Session["userType"].Equals("admin"))
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -52,7 +52,7 @@ namespace starrexam.Controllers
         public ActionResult Create()
         {
             /////////////
-            if (!Session["userType"].Equals("admin"))
+            if (Session["userType"] == null || !Session["userType"].Equals("admin"))
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -68,7 +68,7 @@ namespace starrexam.Controllers
         public ActionResult Create([Bind(Include = "userName,password,userType")] user user)
         {
             /////////////
-            if (!Session["userType"].Equals("admin"))
+            if (Session["userType"] == null || !Session["userType"].Equals("admin"))
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -87,7 +87,7 @@ namespace starrexam.Controllers
         public ActionResult Edit(string id)
         {
             /////////////
-            if (!Session["userType"].Equals("admin"))
+            if (Session["userType"] == null || !Session["userType"].Equals("admin"))
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -112,7 +112,7 @@ namespace starrexam.Controllers
         public ActionResult Edit([Bind(Include = "userName,password,userType")] user user)
         {
             /////////////
-            if (!Session["userType"].Equals("admin"))
+            if (Session["userType"] == null || !Session["userType"].Equals("admin"))
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -130,7 +130,7 @@ namespace starrexam.Controllers
         public ActionResult Delete(string id)
         {
             /////////////
-            if (!Session["userType"].Equals("admin"))
+            if (Session["userType"] == null || !Session["userType"].Equals("admin"))
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -157,7 +157,7 @@ namespace starrexam.Controllers
         public ActionResult DeleteConfirmed(string id)
         {
             /////////////
-            if (!Session["userType"].Equals("admin"))
+            if (Session["userType"] == null || !Session["userType"].Equals("admin"))
             {
                 return RedirectToAction("Index", "Home");
             }
