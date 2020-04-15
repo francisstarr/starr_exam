@@ -37,7 +37,7 @@
                 </td>
             </tr>
 
-            @foreach (var item in Model.bookings)
+            @foreach (var item in Model.bookings.Where(x=>x.ending>DateTime.Today))
             {
                 <tr>
                     <td>
@@ -48,9 +48,9 @@
                     </td>
                 </tr>
             }
-            @if (Model.bookings.Count==0) {
+            @if (Model.bookings.Where(x=>x.ending>DateTime.Today).ToList().Count==0) {
                 <tr>
-                    <u>This room does not have future bookings. You can be the first.</u>
+                    <u>This room does not have future nor present bookings.</u>
                 </tr>
             }
         
