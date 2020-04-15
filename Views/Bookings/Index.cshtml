@@ -36,7 +36,7 @@
         @Html.DisplayFor(modelItem => item.bookingId)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.room.roomNumber)
+        <a href="@Url.Action("Details", "Rooms", new { Id=item.roomNumber})">  @Html.DisplayFor(modelItem => item.room.roomNumber)</a>
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.starting)

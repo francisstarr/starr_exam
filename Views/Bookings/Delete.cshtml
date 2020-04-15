@@ -40,6 +40,7 @@
 
         <dd>
             @Html.DisplayFor(model => model.room.roomNumber)
+            <a href="@Url.Action("Details", "Rooms", new { Id=Model.roomNumber})"> ← Click here for more information about this room</a>
         </dd>
 
         <dt>
@@ -56,7 +57,7 @@
 
             <div class="form-actions no-color">
                 <input type="submit" value="Delete" class="btn btn-default" /> |
-                @Html.ActionLink("Back to List", "Index")
+                @Html.ActionLink("Back to your Bookings", "Index")
             </div>
         }
         <p class="text-warning"> @Html.DisplayFor(model => model.errorMessage)</p>
