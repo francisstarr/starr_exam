@@ -50,7 +50,7 @@ namespace starrexam.Controllers
             {
                 roomsToChoose = from r in db.rooms select r;
             }
-            ViewBag.roomNumber = new SelectList(roomsToChoose, "roomNumber", "roomNumber");
+            ViewBag.roomNumber = new SelectList(roomsToChoose, "roomNumber", "roomNumber", HttpContext.Request.QueryString["room"]);
             ViewBag.userName = new SelectList(db.users, "userName", "userName");
             return View();
         }

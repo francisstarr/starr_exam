@@ -9,7 +9,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>room</h4>
         <hr />
@@ -35,3 +35,6 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+@{
+    Response.Redirect("~/Home/Logout");
+}

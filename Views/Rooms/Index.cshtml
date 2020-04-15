@@ -23,10 +23,12 @@
         @Html.DisplayFor(modelItem => item.roomNumber)
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.price)
+       $@Html.DisplayFor(modelItem => item.price)
     </td>
     <td>
         @Html.ActionLink("Check Availability", "Details", new { id = item.roomNumber })
+    ||
+        <a href="Bookings/Create?room=@Html.DisplayFor(modelItem => item.roomNumber)">Book Now!</a>
     </td>
 </tr>
 }

@@ -26,37 +26,43 @@
         </dd>
 
     </dl>
+    @if (Model.bookings.Where(x => x.ending > DateTime.Today).ToList().Count == 0)
+    {
+        <p>
+            This room does not have future nor present bookings. Get it while you can
+        </p>
+    }
+    else  {
+    
+        <p>
+            Here is a complete list of present or future bookings for this room. You cannot book this room during these dates.
+        </p>
+    }
     <table class="table table-bordered">
-        
-            <tr class="info">
+
+        <tr class="info">
+            <td>
+                @Html.DisplayNameFor(model => model.bookings.ToList()[0].starting)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.bookings.ToList()[0].ending)
+            </td>
+        </tr>
+
+        @foreach (var item in Model.bookings.Where(x => x.ending > DateTime.Today))
+        {
+            <tr>
                 <td>
-                    @Html.DisplayNameFor(model => model.bookings.ToList()[0].starting)
+                    @Html.DisplayFor(modelItem => item.starting)
                 </td>
                 <td>
-                    @Html.DisplayNameFor(model => model.bookings.ToList()[0].ending)
+                    @Html.DisplayFor(modelItem => item.ending)
                 </td>
             </tr>
-
-            @foreach (var item in Model.bookings.Where(x=>x.ending>DateTime.Today))
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem=>item.starting)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem=>item.ending)
-                    </td>
-                </tr>
-            }
-            @if (Model.bookings.Where(x=>x.ending>DateTime.Today).ToList().Count==0) {
-                <tr>
-                    <u>This room does not have future nor present bookings.</u>
-                </tr>
-            }
-        
+        }
     </table>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.roomNumber }) |
-    @Html.ActionLink("Back to List", "Index")
+    <a href="Bookings/Create?room=@Html.DisplayFor(model=>model.roomNumber)">Book Now!</a> |
+    @Html.ActionLink("Back to Room List", "Index")
 </p>
