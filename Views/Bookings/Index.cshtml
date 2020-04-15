@@ -9,6 +9,16 @@
 <p>
     @Html.ActionLink("Book a Room", "Create")
 </p>
+<p>
+    This is a list of all your past, present and future bookings. To get more information about a specific booking, click on its <b>@Html.DisplayNameFor(model => model.bookingId)</b>.
+</p>
+<p>
+    To get more information about a specific room that you booked, click on its  <b>@Html.DisplayNameFor(model => model.roomNumber)</b>.
+</p>
+<p>
+    Click on thr <b>Cancel</b> button to cancel a booking. Note that 
+    you can only cancel you booking if your starting date is more than one date in the future
+</p>
 <table class="table">
     <tr>
         <th>
@@ -33,7 +43,9 @@
 @foreach (var item in Model) {
 <tr>
     <td>
-        @Html.DisplayFor(modelItem => item.bookingId)
+        <a href="@Url.Action("Details", new { id = item.bookingId })">
+            @Html.DisplayFor(modelItem => item.bookingId)
+        </a>
     </td>
     <td>
         <a href="@Url.Action("Details", "Rooms", new { Id=item.roomNumber})">  @Html.DisplayFor(modelItem => item.room.roomNumber)</a>
@@ -49,8 +61,7 @@
     </td>
 
     <td>
-        @Html.ActionLink("Details", "Details", new { id = item.bookingId }) |
-        @Html.ActionLink("Cancel this Booking", "Delete", new { id = item.bookingId })
+        @Html.ActionLink("Cancel", "Delete", new { id = item.bookingId })
     </td>
 </tr>
 }
