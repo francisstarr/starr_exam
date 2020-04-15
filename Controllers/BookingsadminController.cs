@@ -52,7 +52,7 @@ namespace starrexam.Controllers
         public ActionResult Create()
         {
             ViewBag.roomNumber = new SelectList(db.rooms, "roomNumber", "roomNumber");
-            ViewBag.userName = new SelectList(db.users, "userName", "password");
+            ViewBag.userName = new SelectList(db.users, "userName", "userName");
             return View();
         }
 
@@ -63,15 +63,33 @@ namespace starrexam.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "bookingId,roomNumber,userName,starting,ending")] booking booking)
         {
-            if (ModelState.IsValid)
+            var checkRowCount = from b in db.bookings
+                                where (b.roomNumber == booking.roomNumber) &&
+       ((booking.ending >= b.starting && booking.ending <= b.ending) || (booking.starting >= b.starting && booking.starting <= b.ending))
+                                select b;
+            int rowCount = checkRowCount.ToList().Count();
+            if (rowCount > 0)
             {
+                booking.errorMessage = "Sorry but the dates you chose overlap with an existing of this room and we don't don double bookings. Please change the dates if you really want this room";
+            }
+            else if (booking.starting < DateTime.Today || booking.ending < DateTime.Today)
+            {
+                booking.errorMessage = "One or more of your dates is in the past. You must change that if you want to continue";
+            }
+            else if (booking.starting >= booking.ending)
+            {
+                booking.errorMessage = "Your ending date must be greater than your start date.";
+            }
+            else if (ModelState.IsValid)
+            {
+                booking.bookingId = booking.randomString();
                 db.bookings.Add(booking);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             ViewBag.roomNumber = new SelectList(db.rooms, "roomNumber", "roomNumber", booking.roomNumber);
-            ViewBag.userName = new SelectList(db.users, "userName", "password", booking.userName);
+            ViewBag.userName = new SelectList(db.users, "userName", "userName", booking.userName);
             return View(booking);
         }
 
@@ -88,7 +106,7 @@ namespace starrexam.Controllers
                 return HttpNotFound();
             }
             ViewBag.roomNumber = new SelectList(db.rooms, "roomNumber", "roomNumber", booking.roomNumber);
-            ViewBag.userName = new SelectList(db.users, "userName", "password", booking.userName);
+            ViewBag.userName = new SelectList(db.users, "userName", "userName", booking.userName);
             return View(booking);
         }
 
