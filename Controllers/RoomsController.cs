@@ -17,7 +17,12 @@ namespace starrexam.Controllers
         // GET: Rooms
         public ActionResult Index()
         {
-            return View(db.rooms.ToList());
+            var roomsToChoose = from r in db.rooms where r.roomNumber >= 200 select r;
+            if (Session["userType"]!=null && Session["userType"].Equals("admin"))
+            {
+                roomsToChoose = from r in db.rooms select r;
+            }
+            return View(roomsToChoose.ToList());
         }
 
         // GET: Rooms/Details/5
