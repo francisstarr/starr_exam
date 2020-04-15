@@ -4,10 +4,11 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
 
 <div>
-    <h4>room</h4>
+    <h3>@Html.DisplayNameFor(model => model.roomNumber) @Html.DisplayFor(model => model.roomNumber)</h3>
+    
+    <a href="/Bookings/Create?room=@Html.DisplayFor(model=>model.roomNumber)"><button class="btn btn-success">Book Now!</button></a>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -32,8 +33,9 @@
             This room does not have future nor present bookings. Get it while you can
         </p>
     }
-    else  {
-    
+    else
+    {
+
         <p>
             Here is a complete list of present or future bookings for this room. You cannot book this room during these dates.
         </p>
@@ -63,6 +65,6 @@
     </table>
 </div>
 <p>
-    <a href="Bookings/Create?room=@Html.DisplayFor(model=>model.roomNumber)">Book Now!</a> |
+ 
     @Html.ActionLink("Back to Room List", "Index")
 </p>
