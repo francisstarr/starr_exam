@@ -7,44 +7,58 @@
 <h2>Details</h2>
 
 <div>
-    <h4>booking</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.starting)
-        </dt>
+    <h4>
+        @Html.DisplayNameFor(model => model.bookingId):  @Html.DisplayFor(model => model.bookingId)</h4>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.userName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.starting)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.userName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.bookingId)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ending)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.bookingId)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.starting)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ending)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.starting)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.room.roomNumber)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.ending)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.room.roomNumber)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.ending)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.user.password)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.room.roomNumber)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.user.password)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.room.roomNumber)
+                <a href="@Url.Action("Details", "Rooms", new { Id=Model.roomNumber})"> ← Click here for more information about this room</a>
+            </dd>
 
-    </dl>
+            <dt>
+                @Html.DisplayNameFor(model => model.room.price)
+            </dt>
+
+            <dd>
+                $ @Html.DisplayFor(model => model.room.price)
+            </dd>
+
+        </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.bookingId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Bookings Admin", "Index")
 </p>

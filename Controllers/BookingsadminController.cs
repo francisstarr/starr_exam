@@ -30,6 +30,12 @@ namespace starrexam.Controllers
         // GET: Bookingsadmin/Details/5
         public ActionResult Details(string id)
         {
+            /////////////
+            if (Session["userType"] == null || !Session["userType"].Equals("admin"))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            //////////
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
