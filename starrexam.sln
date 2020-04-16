@@ -5,16 +5,29 @@ VisualStudioVersion = 16.0.29905.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "starrexam", "starrexam.csproj", "{C123A0C9-AE3D-454E-88B5-C9C7E58B07F1}"
 EndProject
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "reportfinal", "..\reportfinal\reportfinal.rptproj", "{DA8679F5-D724-405E-9B02-AE4DB5EE46BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		DebugLocal|Any CPU = DebugLocal|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{C123A0C9-AE3D-454E-88B5-C9C7E58B07F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C123A0C9-AE3D-454E-88B5-C9C7E58B07F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C123A0C9-AE3D-454E-88B5-C9C7E58B07F1}.DebugLocal|Any CPU.ActiveCfg = Debug|Any CPU
+		{C123A0C9-AE3D-454E-88B5-C9C7E58B07F1}.DebugLocal|Any CPU.Build.0 = Debug|Any CPU
 		{C123A0C9-AE3D-454E-88B5-C9C7E58B07F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C123A0C9-AE3D-454E-88B5-C9C7E58B07F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA8679F5-D724-405E-9B02-AE4DB5EE46BE}.Debug|Any CPU.ActiveCfg = Debug
+		{DA8679F5-D724-405E-9B02-AE4DB5EE46BE}.Debug|Any CPU.Build.0 = Debug
+		{DA8679F5-D724-405E-9B02-AE4DB5EE46BE}.Debug|Any CPU.Deploy.0 = Debug
+		{DA8679F5-D724-405E-9B02-AE4DB5EE46BE}.DebugLocal|Any CPU.ActiveCfg = DebugLocal
+		{DA8679F5-D724-405E-9B02-AE4DB5EE46BE}.DebugLocal|Any CPU.Build.0 = DebugLocal
+		{DA8679F5-D724-405E-9B02-AE4DB5EE46BE}.Release|Any CPU.ActiveCfg = Release
+		{DA8679F5-D724-405E-9B02-AE4DB5EE46BE}.Release|Any CPU.Build.0 = Release
+		{DA8679F5-D724-405E-9B02-AE4DB5EE46BE}.Release|Any CPU.Deploy.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

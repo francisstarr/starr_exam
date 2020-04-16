@@ -25,8 +25,61 @@
         <dd>
             @Html.DisplayFor(model => model.userType)
         </dd>
-
     </dl>
+    @if (Model.bookings.ToList().Count == 0)
+    {
+        <p>
+            This room does not have future nor present bookings. Get it while you can
+        </p>
+    }
+    else
+    {
+
+        <p>
+            Here is a complete list of present or future bookings for this room. You cannot book this room during these dates.
+        </p>
+    }
+    <table class="table table-bordered">
+
+        <tr class="info">
+            <td>
+                @Html.DisplayNameFor(model => model.bookings.ToList()[0].bookingId)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.bookings.ToList()[0].roomNumber)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.bookings.ToList()[0].starting)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.bookings.ToList()[0].ending)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.bookings.ToList()[0].room.price)
+            </td>
+        </tr>
+
+        @foreach (var item in Model.bookings)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem=>item.bookingId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.roomNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.starting)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ending)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.room.price)
+        </td>
+    </tr>
+        }
+    </table>
 </div>
 <p>
     @Html.ActionLink("Back to List of Users", "Index")
