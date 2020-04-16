@@ -167,6 +167,11 @@ namespace starrexam.Controllers
             {
                 return Delete(id);
             }
+            ///////////
+            var userBookings = (from x in db.bookings where x.userName.Equals(id) select x).ToList();
+            foreach (var userBook in userBookings) {
+                db.bookings.Remove(userBook);
+            } 
             db.users.Remove(user);
             db.SaveChanges();
             return RedirectToAction("Index");
